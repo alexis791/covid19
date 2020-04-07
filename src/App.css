@@ -1,38 +1,259 @@
-.App {
-  text-align: center;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  font-family: 'Roboto', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media screen and ( min-width: 320px ) {
+  .App {
+    background-color: red;
+    display: grid;
+    grid-template-rows: repeat(3, auto);
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .Header {
+    width: 100%;
+    height: 60px;
+    background-color: #2799D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  to {
-    transform: rotate(360deg);
+
+  .Header__Content {
+    width: inherit;
+    display: inherit;
+    justify-content: inherit;
+    align-items: inherit;
+  }   
+
+  .Header__logo {
+    width: 50px;
+    height: 40px;
+    margin: 0 10px;
   }
+
+  .Header__title {
+    color: white;
+    font-size: 1.1rem;
+  }
+
+  .Select {
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px;
+    margin: 20px 0;
+    -webkit-box-shadow: 1px 4px 5px -1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 1px 4px 5px -1px rgba(0,0,0,0.5);
+    box-shadow: 1px 4px 5px -1px rgba(0,0,0,0.5);
+  }
+  
+
+  .Country {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column-reverse;
+    padding: 20px 0;
+  }
+
+  .Country__Info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .Update {
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+  }
+
+  .Info {
+    background-color: #f3f3f3;
+    padding: 15px 30px;
+  }
+
+  .Statistics{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+  }
+
+  .Statistic {
+    width: 250px;
+    height: 100px;
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10px 0;
+    -webkit-box-shadow: 1px 4px 5px -1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 1px 4px 5px -1px rgba(0,0,0,0.5);
+    box-shadow: 1px 4px 5px -1px rgba(0,0,0,0.5);
+  }
+
+  .Statistic--quantity {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .Statistic--title, .Statistic--percentage {
+    font-size: 1rem;
+  }
+
+  .afirmative {
+    border-bottom: 10px solid #0188C2;
+  }
+
+  .recovered {
+     border-bottom: 10px solid green;
+  }
+
+  .deads {
+     border-bottom: 10px solid #d93327;
+  }
+
+  .Title {
+    font-size: 1.5rem;
+    font-weight: normal;
+  }
+
+  .Flag {
+    width: 180px;
+    height: 100px;
+  }
+
+
+
+  .Footer {
+    background-color:black;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 0.9rem;
+   }
+
+   .logo {
+     width: 30px;
+     height: 30px;
+     margin-left: 10px;
+   }
+
+   .Footer a {
+     color: white;
+     font-style: none;
+   }
+
+
+}
+
+@media screen and ( min-width: 640px ){
+
+  .Select {
+    width: 300px;
+  }
+
+  .Country {
+    flex-direction: row;
+  }
+  .Country__Info {
+    width: 50%;
+  }
+ 
+  .Flag {
+    width: 210px;
+    height: 120px;
+  }
+
+  .Statistics {
+    flex-direction: row;
+  }
+
+  .Statistic {
+    width: 150px;
+    height: 150px;
+  }
+
+  .Statistic--quantity {
+    font-size: 1.1rem;
+  }
+
+  .Footer {
+    font-size: 1.3rem;
+  }
+
+}
+
+@media screen and ( min-width: 900px ) {
+  .Country {
+    justify-content: space-between;
+  }
+
+  .Select {
+    width: 100%;
+  }
+
+  .Update {
+    flex-direction: row;
+  }
+
+  .Update b {
+    margin-left: 10px;
+  }
+
+  .Info {
+    display: flex;
+    justify-content: center;
+  }
+
+  .Info__Content {
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .Statistic {
+    width: 250px;
+    height: 100px;
+  }
+  
+  .Statistic--quantity {
+    font-size: 1.5rem;
+  }
+
+  .Header__title {
+    font-size: 1.5rem;
+  }
+
+  .Flag {
+    width: 350px;
+    height: 250px;
+  }
+
+  .Footer {
+    font-size: 0.8rem;
+  }
+
 }
