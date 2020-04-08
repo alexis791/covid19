@@ -1,9 +1,8 @@
 import React from 'react'
-import flag from '../../assets/img/mex.svg'
 
-const Flag = () => (
+const Flag = (props) => (
   <div>
-    <img className="Flag" alt="flag" src={flag}/>
+    <img className="Flag" alt="flag" src={props.direction}/>
   </div>
 )
 

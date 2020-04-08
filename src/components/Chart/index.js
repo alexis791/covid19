@@ -5,39 +5,51 @@ import CanvasJSReact from '../../assets/js/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class Chart extends React.Component {
-
-
+  constructor() {
+		super();
+		this.toggleDataSeries = this.toggleDataSeries.bind(this);
+	}
+	toggleDataSeries(e){
+		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+			e.dataSeries.visible = false;
+		}
+		else{
+			e.dataSeries.visible = true;
+		}
+		this.chart.render();
+  }
+  
 	render() {
+    const {confirmed, deaths } = this.props.dataSet
 		const options = {
-			animationEnabled: true,
-			title: {
-				text: ""
-			},
-			axisY: {
-				title: "Casos confirmados",
-				includeZero: false,
-				suffix: " "
-			},
+			theme: "light",
+			  animationEnabled: true,
+			  toolTip: {
+				  shared: true
+			  },
+			  legend: {
+          verticalAlign: "left",
+          horizontalAlign: "bottom",
+          reversed: true,
+          cursor: "pointer",
+          itemclick: this.toggleDataSeries
+			  },
 			data: [{
-				type: "splineArea",
-				xValueFormatString: "YYYY",
-				yValueFormatString: "Casos Confirmados",
+        type: "area",
+        name:"Recuperados",
+				xValueFormatString: "DD YYYY",
+				yValueFormatString: "##",
 				showInLegend: true,
 				legendText: "Recuperados",
-				dataPoints: [
-          { x: new Date("2020-04-02"), y: 10 },
-          { x: new Date("2020-04-03"), y: 30 }
-				]
+				dataPoints: confirmed
 			},{
-				type: "splineArea",
-				xValueFormatString: "YYYY",
-				yValueFormatString: "Dia",
+        type: "area",
+        name:"Muertos",
+				xValueFormatString: "DD YYYY",
+				yValueFormatString: "##",
 				showInLegend: true,
 				legendText: "Muertes",
-				dataPoints: [
-          { x: new Date("2020-04-02"), y: 10 },
-          { x: new Date("2020-04-03"), y: 30 }
-				]
+				dataPoints: deaths
 			}]
 		}
 		return (
