@@ -12,6 +12,7 @@ const Select = (props) => {
 
   useEffect( () => {
     getAllCountries()
+    getDataOfCovid('mexico')
   },[])
 
   const handleCountry = (event) => {
@@ -21,6 +22,7 @@ const Select = (props) => {
   return (
     <select className="Select"
     onChange={handleCountry}>
+      <option value="">Seleccione un pais</option>
     {
       countries.map((country, key) => (
       <option key={key} value={country.name}>{ country.name }</option>

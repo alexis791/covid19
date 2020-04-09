@@ -10,7 +10,10 @@ const initialState = {
     totalConfirmed: 0,
     totalRecoverds: 0,
     totalDeaths: 0,
-    daily: []
+    daily: {
+      confirmed: [{x:"2020-01-20", y:0}],
+      deaths: [{x:"2020-01-20", y:0}]
+    }
   }
 }
 

@@ -27,7 +27,31 @@ export const getDataOfCovid = (country) => {
 export const getDataOfCovidGlobally = () => {
     return async (dispatch) => {
       const covidGeneralInfo = axios.get(`https://covid19.mathdro.id/api`)
-      const covidDailyInfo = axios.get(`https://covid19.mathdro.id/api/daily`)
+      const covidDailyInfo = await axios.get(`https://covid19.mathdro.id/api/daily`)
+
+      // let fechas = covidDailyInfo.data.map( data => {
+      //   return data.reportDate
+      // })
+
+      // let promesas = []
+
+      // covidDailyInfo.data.map( data => {
+      //   promesas.push(axios.get(`https://covid19.mathdro.id/api/daily/${data.reportDate}`))
+      // })
+
+      // const datos = await Promise.all(promesas)
+
+      // const newDatos = datos.map( ({data}) => (
+      //   [
+      //     ...data
+      //   ]
+      // ))
+
+      // const mexico = newDatos.flat(1).filter( country => {
+      //   return country.countryRegion === 'Mexico'
+      // })
+
+      
 
       const data = await Promise.all([covidDailyInfo, covidGeneralInfo])
       let dataSetConfirmed = []
@@ -37,11 +61,11 @@ export const getDataOfCovidGlobally = () => {
 
       data[0].data.map( day => {
         dataSetConfirmed.push({
-          x: new Date(day.reportDate),
+          x: day.reportDate,
           y: day.confirmed.total
         })
         dataSetDeaths.push({
-          x: new Date(day.reportDate),
+          x: day.reportDate,
           y: day.deaths.total
         })
       })

@@ -9,11 +9,9 @@ import { getDataOfCovidGlobally } from '../redux/actions/covidAction'
 
 
 const Content = (props) => {
-  console.log(props)
-
   const { flag, confirmed, recovered, deaths, lastUpdate} = props.covid
   const { totalConfirmed, totalRecovered, totalDeaths, daily } = props.covid.globally
-
+  console.log('DAILY----->',JSON.daily)
   const { getDataOfCovidGlobally } = props
 
   const percentConfirmed = (confirmed / confirmed ) * 100  
@@ -84,7 +82,9 @@ const Content = (props) => {
           quantity={totalDeaths}
         />
       </section>
-      <Chart dataSet={daily} />
+      <div className="ChartContent">
+        <Chart confirmed={daily.confirmed} deaths={daily.deaths} />
+      </div>
       </div>
     </div>
   )

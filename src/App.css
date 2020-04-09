@@ -10,6 +10,15 @@ body{
   font-family: 'Roboto', sans-serif;
 }
 
+svg {
+  width: 100%;
+}
+
+.ChartContent {
+  height: 500px;
+  min-width: 0;
+}
+
 @media screen and ( min-width: 320px ) {
   .App {
     background-color: red;
