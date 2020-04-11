@@ -7,11 +7,12 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import reducers from './redux'
-import './analitics.js'
+import { analitics } from './analitics.js'
 
 const store = createStore(reducers, applyMiddleware(thunk))
 
 function App() {
+  analitics()
   return (
     <Provider store={store}>
       <div className="App">
