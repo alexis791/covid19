@@ -19,6 +19,12 @@ svg {
   min-width: 0;
 }
 
+body {
+  min-width:320px;        /* Suppose you want minimum width of 1000px */
+   width: auto !important;  /* Firefox will set width as auto */
+   width:320px;   
+}
+
 @media screen and ( min-width: 320px ) {
   .App {
     background-color: red;
@@ -40,6 +46,7 @@ svg {
     display: inherit;
     justify-content: inherit;
     align-items: inherit;
+    min-width: 300px;
   }   
 
   .Header__logo {

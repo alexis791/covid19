@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Select from '../components/Select'
 import Flag from '../components/Flag'
 import Statistic from '../components/Statistic'
 import StatisticGlobally from '../Containers/StatisticGlobal'
+import { LoaderSmall, LoaderHigh, LoaderMedium } from '../components/Loaders'
 
 import { connect } from 'react-redux'
 import { getDataOfCovidGlobally } from '../redux/actions/covidAction'
@@ -10,53 +11,77 @@ import { getDataOfCovidGlobally } from '../redux/actions/covidAction'
 
 
 const Content = (props) => {
-  const { flag, confirmed, recovered, deaths, lastUpdate, name, population, area} = props.covid
+  const { flag, confirmed, recovered, deaths, lastUpdate, name, population, area, loading, error} = props.covid
 
   const percentConfirmed = (confirmed / confirmed ) * 100  
   const percentRecovered = (recovered / confirmed ) * 100 
   const percentDeaths = (deaths / confirmed ) * 100
 
+  useEffect(() => {
+    error && alert('No se tiene informacion del pais, intente de nuevo.')
+  },[error])
+
   return (
     <div className="Info">
       <div className="Info__Content">
-        <h1 className="Title">{name}</h1>
+        { loading ? 
+          <LoaderSmall />
+          : <h1 className="Title">{name}</h1> 
+        }
+        
       <section className="Country">
         <div className="Country__Info">
-          <Select />
-        <p className="Update">Ultima Actualización <b>{lastUpdate}</b></p>
+          <Select lastUpdate={lastUpdate}/> 
         </div>
-        <div>
-          <Flag
-            direction={flag}
-            population={population}
-            area={area}
-          />
-        </div>
+        {
+          loading ?
+            <LoaderHigh />
+            : (
+              <Flag
+                direction={flag}
+                population={population}
+                area={area}
+              />
+            )
+
+        }
       </section>
       <section className="Statistics">
-        <Statistic
-          title="Confirmados" 
-          percent={percentConfirmed}
-          status="Statistic afirmative"
-          quantity={confirmed}
-        />
-        <Statistic
-          title="Recuperados" 
-          percent={percentRecovered}
-          status="Statistic recovered"
-          icon="em em-upside_down_face"
-          quantity={recovered}
-        />
-        <Statistic
-          title="Muertos" 
-          percent={percentDeaths}
-          status="Statistic deads"
-          icon="em em-white_frowning_face"
-          quantity={deaths}
-        />
+      {
+        loading ?
+          (<>
+            <LoaderMedium />
+            <LoaderMedium />
+            <LoaderMedium />
+          </>)
+          : 
+          (<>
+              <Statistic
+                title="Confirmados" 
+                percent={percentConfirmed}
+                status="Statistic afirmative"
+                quantity={confirmed}
+              />
+              <Statistic
+                title="Recuperados" 
+                percent={percentRecovered}
+                status="Statistic recovered"
+                icon="em em-upside_down_face"
+                quantity={recovered}
+              />
+              <Statistic
+                title="Muertos" 
+                percent={percentDeaths}
+                status="Statistic deads"
+                icon="em em-white_frowning_face"
+                quantity={deaths}
+              />
+            </>)
+        }
       </section>
       < StatisticGlobally />
-      </div>
+      <h5>* Las estadisticas son calculadas en base a los casos confirmados.</h5>
+      </div>      
     </div>
   )
 }

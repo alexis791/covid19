@@ -1,6 +1,12 @@
-import { COVID_INFO_GLOBALLY } from '../types'
+import { 
+  COVID_INFO_GLOBALLY,
+  LOADING_COVID_INFO_GLOBALLY,
+  ERROR_COVID_INFO_GLOBALLY
+} from '../types'
 
   const initialState = {
+    loading: false,
+    error: false,
     totalConfirmed: 0,
     totalRecoverds: 0,
     totalDeaths: 0,
@@ -12,11 +18,27 @@ import { COVID_INFO_GLOBALLY } from '../types'
 
   const covidGlobally = (state=initialState, action) => {
     switch (action.type) {
+      case LOADING_COVID_INFO_GLOBALLY: 
+      return{
+        ...state,
+        loading: true,
+        error: false
+      }
+
       case COVID_INFO_GLOBALLY:
         return {
           ...state,
-          ...action.payload
+          ...action.payload,
+          loading: false,
+          error: false
         }
+
+      case ERROR_COVID_INFO_GLOBALLY: 
+      return {
+        ...state,
+        loading: false,
+        error: true
+      }
     
       default:
         return state;

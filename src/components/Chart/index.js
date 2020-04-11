@@ -7,7 +7,6 @@ import { ResponsiveLine } from '@nivo/line'
 // you'll often use just a few of them.
 
 const Chart = ({confirmed, deaths}) => {
-    // console.log('Props-->',data)
     return (
       <ResponsiveLine
           data={[
@@ -32,7 +31,7 @@ const Chart = ({confirmed, deaths}) => {
               tickPadding: 5,
               format:'%b %d',
               tickRotation: -80,
-              legend: 'Fecha',
+              legend: 'Dia',
               legendOffset: 60,
               legendPosition: 'middle'
           }}
