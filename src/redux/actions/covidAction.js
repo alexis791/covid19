@@ -5,13 +5,15 @@ export const getDataOfCovid = (country) => {
   console.log(country)
   return async (dispatch) => {
     const covidInfo = axios.get(`https://covid19.mathdro.id/api/countries/${country}`)
-    const countryInfo = axios.get(`https://restcountries.eu/rest/v2/name/${country}?fullText=true`)
+    const countryInfo = axios.get(`https://restcountries.eu/rest/v2/alpha/${country}`)
 
     const data = await Promise.all([covidInfo, countryInfo])
-
+    console.log(data)
     const response = { 
-      population: data[1].data[0].population,
-      flag: data[1].data[0].flag,
+      name: data[1].data.name,
+      area: data[1].data.area,
+      population: data[1].data.population,
+      flag: data[1].data.flag,
       confirmed: data[0].data.confirmed.value,
       recovered: data[0].data.recovered.value,
       deaths: data[0].data.deaths.value,
@@ -56,8 +58,6 @@ export const getDataOfCovidGlobally = () => {
       const data = await Promise.all([covidDailyInfo, covidGeneralInfo])
       let dataSetConfirmed = []
       let dataSetDeaths = []
-
-      console.log(data[0].data)
 
       data[0].data.map( day => {
         dataSetConfirmed.push({

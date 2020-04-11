@@ -4,7 +4,7 @@ import { getAllCountries } from '../../redux/actions/countriesAction'
 import { getDataOfCovid } from '../../redux/actions/covidAction'
 
 const Select = (props) => {
-  console.log(props)
+  console.log('SELECT', props)
   const {countries,
     getAllCountries,
     getDataOfCovid
@@ -12,7 +12,7 @@ const Select = (props) => {
 
   useEffect( () => {
     getAllCountries()
-    getDataOfCovid('mexico')
+    getDataOfCovid('mex')
   },[])
 
   const handleCountry = (event) => {
@@ -25,7 +25,7 @@ const Select = (props) => {
       <option value="">Seleccione un pais</option>
     {
       countries.map((country, key) => (
-      <option key={key} value={country.name}>{ country.name }</option>
+      <option key={key} value={country.iso3}>{ country.name }</option>
       ))
     }
     </select>
@@ -33,7 +33,6 @@ const Select = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     countries: state.countries
   }
