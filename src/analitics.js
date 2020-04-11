@@ -5,5 +5,13 @@ const trackingId = "UA-163319780-1"; // Replace with your Google Analytics track
 export const analitics = () => {
   ReactGA.initialize(trackingId);
 
-  ReactGA.pageview('/')
+  ReactGA.pageview('/Inicio')
 }
+
+export const Event = (category, action, label) => {
+  ReactGA.event({
+    category: category,
+    action: action,
+    label: label
+  });
+};

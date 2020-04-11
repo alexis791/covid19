@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getAllCountries } from '../../redux/actions/countriesAction'
 import { getDataOfCovid } from '../../redux/actions/covidAction'
 import { LoaderSmall } from '../../components/Loaders'
+import { Event } from '../../analitics'
 
 const Select = (props) => {
   const {
@@ -20,6 +21,7 @@ const Select = (props) => {
 
   const handleCountry = (event) => {
     getDataOfCovid(event.target.value)
+    Event("Pais", "Cambiar de pais", event.target.value)
   }
 
   return (
