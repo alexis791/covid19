@@ -8,7 +8,6 @@ const CountryGraph = (props) => {
   const { confirmed, deaths } = props.covidInTheCountry
   const { getCovidDataInCountry } = props
 
-  console.log(confirmed, deaths)
   useEffect( () => {
     getCovidDataInCountry('Mexico')
   }, [])

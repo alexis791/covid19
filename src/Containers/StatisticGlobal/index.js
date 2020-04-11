@@ -6,7 +6,6 @@ import { getDataOfCovidGlobally } from '../../redux/actions/covidAction'
 import { LoaderSmall, LoaderMedium, LoaderGiant } from '../../components/Loaders'
 
 const StatisticGlobal = (props) => {
-  console.log('Globally', props)
   const { 
     totalConfirmed,
     totalRecovered,

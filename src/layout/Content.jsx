@@ -88,7 +88,6 @@ const Content = (props) => {
 
 
 const mapStateToProps = (state) => {
-  console.log(state.covid)
   return {
     covid: state.covid
   }

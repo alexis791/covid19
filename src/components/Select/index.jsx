@@ -5,7 +5,6 @@ import { getDataOfCovid } from '../../redux/actions/covidAction'
 import { LoaderSmall } from '../../components/Loaders'
 
 const Select = (props) => {
-  console.log('Select countries',props)
   const {
     getAllCountries,
     getDataOfCovid,
